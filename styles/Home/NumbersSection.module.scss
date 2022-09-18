@@ -1,0 +1,83 @@
+@import "../variables";
+@import "../mixins";
+
+section {
+  background-color: $primary;
+  .numbers_section {
+    padding: $numbers_section_p;
+    color: $secondary;
+    height: $numbers_section_h;
+    @include flex(row, space-around, center, 0, false);
+    .numbers_section_left {
+      height: $numbers_section_left_h;
+      flex: $numbers_section_left_flex;
+      position: relative;
+      @include flex(column, space-around, center, 0, false);
+      h1 {
+        font-size: $numbers_section_left_h1_size;
+      }
+      .numbers_section_left_img {
+        @include img();
+        width: $numbers_section_left_img_w;
+        height: $numbers_section_left_img_h;
+        clip-path: polygon(
+          33% 0,
+          100% 0,
+          100% 20%,
+          100% 80%,
+          100% 100%,
+          0 100%,
+          0% 80%,
+          0 28%
+        );
+      }
+      //mobile
+      @include mobile(992px) {
+        h1 {
+          font-size: $numbers_section_left_h1_size_mobile;
+        }
+      }
+    }
+    .numbers_section_right {
+      height: $numbers_section_right_h;
+      @include flex(column, space-around, center, 0, false);
+      .data_content {
+        text-align: center;
+        @include flex(row, center, center, 20px, false);
+        .data_in_detail {
+          @include flex(column, center, center, 0, false);
+        }
+        .data {
+          display: grid;
+          place-items: center;
+          width: 60px;
+          height: 60px;
+          border: 3px solid green;
+          font-size: $numbers_section_right_h1_size;
+          margin-bottom: $numbers_section_right_h1_margin_b;
+          transition: all 0.5s ease-in-out;
+          -webkit-transition: all 0.5s ease-in-out;
+          -moz-transition: all 0.5s ease-in-out;
+          -ms-transition: all 0.5s ease-in-out;
+          -o-transition: all 0.5s ease-in-out;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+        }
+        span {
+          font-size: $numbers_section_right_span_fs;
+        }
+      }
+      @include mobile(992px) {
+        flex: $numbers_section_right_mobile_flex;
+      }
+    }
+    //mobile
+    @include mobile(992px) {
+      @include flex(column, center, center, 0, true);
+      height: $numbers_section_mobile_h;
+    }
+  }
+}

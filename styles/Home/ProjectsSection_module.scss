@@ -1,0 +1,44 @@
+@import "../variables";
+@import "../mixins";
+.projects {
+  padding: $projects_p;
+  @include flex(row, space-between, center, 0, false);
+  .projects_left {
+    flex: $projects_left_flex;
+    @include flex(row, space-around, center, $projects_left_gap, false);
+    .project {
+      @include flex(column, center, center, $projects_left_project_gap, false);
+      img {
+         @include img();
+        width: $projects_left_project_img_w;
+        height: $projects_left_project_img_h;
+        clip-path: polygon(73% 0, 100% 29%, 100% 100%, 0 100%, 0 0);
+      }
+    }
+  }
+  .projects_right {
+    flex: $projects_right_flex;
+    @include flex(column, flex-start, flex-start, $projects_right_gap, false);
+    .projects_btn {
+      @include btn(
+        $project_btn_w,
+        $project_btn_h,
+        $project_btn_p,
+        $primary,
+        $secondary
+      );
+    }
+  }
+  //?:mobile
+  @include mobile($media_query_width) {
+    @include flex(column, center, center, $projects_gap_mobile, false);
+    .projects_left {
+      flex: $projects_left_mobile_flex;
+      width: $projects_left_mobile_width;
+      @include flex(row, space-around, center, $projects_left_gap, true);
+    }
+    .projects_right {
+      flex: $projects_right_mobile_flex;
+    }
+  }
+}

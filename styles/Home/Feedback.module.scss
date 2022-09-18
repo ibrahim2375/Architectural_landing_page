@@ -1,0 +1,99 @@
+@import "../variables";
+@import "../mixins";
+.feedback {
+  padding: $feedback_p;
+  background-color: $primary;
+  color: $secondary;
+  @include flex(row, center, flex-start, 0, false);
+  overflow: hidden;
+  .feedback_container {
+    position: relative;
+    width: $feedback_container_w;
+    padding: $feedback_container_p;
+    @include flex(column, center, flex-start, $feedback_container_gap, false);
+    .content {
+      width: $feedback_container_content_w;
+      @include flex(column, flex-start, flex-start, 0px, false);
+      overflow: auto;
+      scroll-behavior: smooth;
+      .customers_feedback {
+        width: $feedback_container_content_customers_w;
+        @include flex(
+          row,
+          flex-start,
+          center,
+          $feedback_container_content_customers_gap,
+          false
+        );
+        .feedback_message {
+          min-width: $feedback_container_content_customers_message_min_w;
+          @include flex(
+            column,
+            center,
+            flex-start,
+            $feedback_container_content_customers_message_gap,
+            false
+          );
+          span {
+            width: $feedback_container_content_customers_message_span_w;
+            height: $feedback_container_content_customers_message_span_h;
+            display: grid;
+            place-items: center;
+            border: 1px solid $secondary;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+          }
+          p {
+            color: $text_muted_2;
+          }
+          .customer_data {
+            width: $feedback_container_content_customers_message_data_w;
+            @include flex(
+              row,
+              flex-start,
+              center,
+              $feedback_container_content_customers_message_data_gap,
+              false
+            );
+            .customer_profile {
+              @include flex(
+                row,
+                center,
+                center,
+                $feedback_container_content_customers_message_data_profile_gap,
+                false
+              );
+              img {
+                width: $feedback_container_content_customers_img_w;
+                height: $feedback_container_content_customers_img_h;
+                object-fit: contain;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+              }
+            }
+          }
+          @include mobile($media_query_width) {
+            min-width: $feedback_container_content_customers_message_mobile_min_w;
+          }
+        }
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .arrows {
+      cursor: pointer;
+      position: absolute;
+      top: $feedback_arrows_t;
+      right: $feedback_arrows_r;
+      @include flex(row, center, center, $feedback_arrows_gap, false);
+    }
+  }
+}

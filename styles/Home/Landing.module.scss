@@ -1,0 +1,118 @@
+@import "../variables";
+@import "../mixins";
+
+.landing {
+  @include flex(row, space-between, center, 30px, false);
+  height: $landing_h;
+  //landing_left/////////////
+  .landing_left {
+    z-index: 99;
+    flex: $landing_left_flex;
+    @include flex(column, center, flex-start, $landing_left_gap, false);
+    h1 {
+      font-size: $main_title_size;
+    }
+    p {
+      color: $txt-muted;
+    }
+    .main-btns {
+      @include flex(row, center, flex-start, $main_btns_gap, false);
+      .btn-start {
+        @include btn(
+          $landing_btn_w,
+          $landing_btn_h,
+          $landing_btn_p,
+          $primary,
+          $secondary
+        );
+      }
+      .btn-view {
+        border: 1px solid $primary;
+        @include btn(
+          $landing_btn_w,
+          $landing_btn_h,
+          $landing_btn_p,
+          $secondary,
+          $primary
+        );
+      }
+    }
+    //?:mobile
+    @include mobile(768px) {
+      h1 {
+        font-size: $main_title_size - 20px;
+      }
+      .main-btns {
+        @include flex(column, center, center, $main_btns_gap, false);
+      }
+    }
+  }
+  //landing_right/////////////
+  .landing_right {
+    flex: $landing_right_flex;
+    height: 100%;
+    @include flex(column, center, center, 0, false);
+    position: relative;
+    .content {
+      width: $landing_right_h;
+      //   @include flex(column, center, center, 30px, false);
+      .img {
+       
+        width: $landing_right_img_w;
+        height: $landing_right_img_h;
+        object-fit: contain;
+        clip-path: polygon(
+          55% 1%,
+          100% 0,
+          100% 20%,
+          100% 80%,
+          100% 100%,
+          0 100%,
+          0% 80%,
+          0 45%
+        );
+      }
+      .box {
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        @include flex(column, center, center, $landing_right_box_gap, false);
+        z-index: $landing_right_box_index;
+        width: $landing_right_box_w;
+        height: $landing_right_box_h;
+        padding: $landing_right_box_p;
+        background-color: $secondary;
+        position: relative;
+        box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.6);
+        .box_img {
+          width: $landing_right_box_img_w;
+          height: $landing_right_box_img_h;
+          object-fit: contain;
+          border: 1px dotted $txt-muted;
+          filter: grayscale(100%);
+          -webkit-filter: grayscale(100%);
+        }
+        p {
+          text-align: center;
+        }
+        @include mobile(1200px) {
+          @include flex(column, center, center, 10px, false);
+          top: -50%;
+          right: -40%;
+          width: 200px;
+          height: 200px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+  @include mobile(992px) {
+    @include flex(column, space-between, center, 30px, true);
+    .landing_left {
+      flex: 1;
+    }
+    .landing_right {
+      display: none;
+    }
+  }
+}

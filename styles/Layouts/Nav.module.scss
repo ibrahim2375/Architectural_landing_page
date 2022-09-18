@@ -1,0 +1,117 @@
+@import "../variables";
+@import "../mixins";
+
+.nav {
+  z-index: 999;
+  margin: $nav_margin;
+  background-color: $secondary;
+  @include flex(row, space-between, center, 0, false);
+  .logo span {
+    margin-left: $logo_margin_left;
+    font-weight: bold;
+  }
+  .links {
+    @include flex(row, space-between, center, $gap_between_nav_links, false);
+    ul {
+      @include flex(row, space-between, center, $gap_between_nav_links, false);
+      li {
+        position: relative;
+        &:hover {
+          cursor: pointer;
+        }
+        &:hover::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: $width_of_dot_after_nav_link;
+          height: $height_of_dot_after_nav_link;
+          background-color: $primary;
+          -webkit-transform: translateX(-50%);
+          -moz-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          -o-transform: translateX(-50%);
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+        }
+        .link {
+          color: $primary;
+        }
+      }
+    }
+    .contact-btn {
+      @include btn(
+        $contact_btn_w,
+        $contact_btn_h,
+        $contact_btn_p,
+        $primary,
+        $secondary
+      );
+    }
+  }
+
+  ///nav in mobile
+  @include mobile($media_query_width) {
+    transition: all 0.5s ease-in-out;
+
+    @include flex(column, space-around, center, 0, true);
+    background-color: $primary;
+    color: $secondary;
+    margin: 0;
+    //position
+    position: fixed;
+    top: -150%;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    //links
+    .links {
+      flex: 0.6;
+      @include flex(
+        column,
+        space-around,
+        center,
+        $gap_between_nav_links,
+        false
+      );
+      ul {
+        @include flex(column, center, center, $gap_between_nav_links, true);
+        li {
+          &:hover::after {
+            background-color: $secondary;
+          }
+          .link {
+            color: $secondary;
+          }
+        }
+      }
+      .contact-btn {
+        @include btn(
+          $contact_btn_w,
+          $contact_btn_h,
+          $contact_btn_p,
+          $secondary,
+          $primary
+        );
+      }
+    }
+  }
+}
+//menu icon
+.menu-icon {
+  display: none;
+  color: $primary;
+  cursor: pointer;
+  position: fixed;
+  top: $menu_icon_top;
+  right: $menu_icon_right;
+  transition: all 0.5s ease-in-out;
+  @include mobile($media_query_width) {
+    display: block;
+    z-index: 999;
+  }
+}

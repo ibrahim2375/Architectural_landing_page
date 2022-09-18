@@ -1,0 +1,70 @@
+@import "../variables";
+@import "../mixins";
+
+.contact {
+  width: $contact_w;
+  height: $contact_h;
+  @include flex(column, center, center, 0, false);
+  .content {
+    width: $contact_content_w;
+    @include flex(column, flex-start, center, $contact_content_gap, false);
+    form {
+      width: $contact_content_form_w;
+      @include flex(column, center, center, $contact_content_form_gap, false);
+      .group_of_input {
+        width: $contact_content_form_inputs_w;
+        @include flex(
+          row,
+          center,
+          center,
+          $contact_content_form_inputs_gap,
+          false
+        );
+        .input {
+          width: $contact_content_form_input_w;
+          @include flex(
+            column,
+            center,
+            flex-start,
+            $contact_content_form_input_gap,
+            false
+          );
+          input {
+            padding: $contact_content_form_input_p;
+            width: $contact_content_form_input_w;
+            background-color: $input_bg;
+            height: $contact_content_form_input_h;
+          }
+          select {
+            @extend input;
+          }
+          textarea {
+            padding: $contact_content_form_textarea_p;
+            width: $contact_content_form_textarea_w;
+            background-color: $input_bg;
+            height: $contact_content_form_textarea_h;
+          }
+          .btn-send {
+            @include btn(
+              $contact_send_btn_w,
+              $contact_send_btn_h,
+              $contact_send_btn_p,
+              $primary,
+              $secondary
+            );
+          }
+        }
+
+        @include mobile($contact_media_query_mobile) {
+          @include flex(
+            column,
+            center,
+            center,
+            $contact_input_mobile_gap,
+            false
+          );
+        }
+      }
+    }
+  }
+}

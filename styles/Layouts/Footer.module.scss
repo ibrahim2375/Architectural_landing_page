@@ -1,0 +1,68 @@
+@import "../variables";
+@import "../mixins";
+
+footer {
+  margin: $footer_margin;
+  @include flex(column, center, center, $footer_gap, false);
+  .footer_content {
+    @include flex(row, space-between, center, 0, false);
+    .footer_contact {
+      flex: $footer_contact_flex;
+      @include flex(column, center, flex-start, $footer_contact_gap, false);
+      p {
+        columns: $text_muted_2;
+      }
+      .contact_btn {
+        @include btn(
+          $footer_contact_btn_w,
+          $footer_contact_btn_h,
+          $footer_contact_btn_p,
+          $primary,
+          $secondary
+        );
+      }
+    }
+    .services {
+      flex: $footer_services_flex;
+      .services_btns {
+        margin-top: $footer_services_btns_margin;
+        @include flex(row, flex-start, center, $footer_services_btns_gap, true);
+        .service_btn {
+          border-radius: $footer_services_btn_radius;
+          -webkit-border-radius: $footer_services_btn_radius;
+          -moz-border-radius: $footer_services_btn_radius;
+          -ms-border-radius: $footer_services_btn_radius;
+          -o-border-radius: $footer_services_btn_radius;
+
+          @include btn(
+            $project_btn_w,
+            $project_btn_h,
+            $project_btn_p,
+            $secondary,
+            $primary
+          );
+          outline: 1px solid $primary;
+        }
+      }
+    }
+    //?:mobile
+    @include mobile($footer_mobile_query) {
+      @include flex(column, space-between, center, $footer_gap, false);
+      .footer_contact {
+        flex: $footer_contact_mobile_flex;
+      }
+      .services {
+        flex: $footer_services_mobile_flex;
+      }
+    }
+  }
+  .copy_rights {
+    border-top: 1px solid $text_muted_2;
+    width: $footer_copy_rights_w;
+    @include flex(row, space-between, center, 0, true);
+    p {
+      padding: $footer_copy_rights_p_p;
+      font-size: $footer_copy_rights_p_fs;
+    }
+  }
+}

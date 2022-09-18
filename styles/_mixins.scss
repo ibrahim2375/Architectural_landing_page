@@ -1,0 +1,44 @@
+@mixin flex($direction, $justify, $align, $gap, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  @if $wrap {
+    flex-wrap: wrap;
+  } @else {
+    flex-wrap: nowrap;
+  }
+}
+@mixin align($align) {
+  display: grid;
+  place-items: $align;
+}
+@mixin btn($width, $height, $padding, $bg, $color) {
+  @include flex(row, center, center, 0, false);
+  cursor: pointer;
+  width: $width;
+  height: $height;
+  padding: $padding;
+  background-color: $bg;
+  color: $color;
+  &:hover {
+    background-color: $color;
+    color: $bg;
+  }
+}
+
+@mixin mobile($max-width) {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+// ?: general style for imgs
+@mixin img() {
+  // box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}

@@ -1,0 +1,21 @@
+@import "./resets.module";
+@import "./variables";
+@import "./Layouts/Nav.module.scss";
+@import "./Layouts/Footer.module.scss";
+@import "./Home/Landing.module.scss";
+@import "./Home/NumbersSection.module.scss";
+@import "./Home/About.module.scss";
+@import "./Home/ProjectsSection_module.scss";
+@import "./Home/Feedback.module.scss";
+@import "./contact/Contact.module.scss";
+
+.container {
+  margin: $container_m;
+}
+
+.link {
+  color: $primary;
+  &:hover {
+    color: rgb(138, 138, 138);
+  }
+}
